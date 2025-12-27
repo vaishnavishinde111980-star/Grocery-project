@@ -1,0 +1,255 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grocery Store</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f4f4f4;
+}
+
+/* NAVBAR */
+.navbar{
+  background:#2e8b57;
+  padding:15px;
+  display:flex;
+  gap:20px;
+}
+.navbar a{
+  color:white;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* BANNER */
+.banner{
+  position:relative;
+  background-image:url("https://images.unsplash.com/photo-1542838132-92c53300491e");
+  background-size:cover;
+  background-position:center;
+  height:350px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* FORM BOX */
+.form-box{
+  background:rgba(255,255,255,0.95);
+  padding:20px;
+  border-radius:10px;
+  width:300px;
+}
+.form-box h3{
+  text-align:center;
+}
+.form-box input{
+  width:100%;
+  padding:8px;
+  margin:8px 0;
+}
+.form-box bu
+tton{
+  width:100%;
+  padding:10px;
+  background:#2e8b57;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+
+/* SECTIONS */
+.section{
+  padding:30px;
+}
+.section h2{
+  text-align:center;
+}
+
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+.product{
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
+}
+.product img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/* TEAM */
+.team{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.member{
+  background:white;
+  padding:15px;
+  width:200px;
+  text-align:center;
+  border-radius:10px;
+}
+.member img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/* FOOTER */
+.footer{
+  background:#2e8b57;
+  color:white;
+  text-align:center;
+  padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#products">Products</a>
+  <a href="#contact">Contact</a>
+  <a href="#login">Login</a>
+</div>
+
+<!-- HOME -->
+<div id="home" class="banner">
+  <div class
+   
+    <h3>Get in Touch</h3>
+
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Email Address">
+    <input type="text" placeholder="Phone Number">
+    <input type="text" placeholder="Subject">
+    <input type="text"placeholder="Message">
+    
+    
+
+    <button>submit</button></submit>
+    
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="section">
+  <h2>About Grocery Store</h2>
+  <p style="text-align:center;">
+    Welcome to Grocery Store! We provide fresh, healthy and high-quality
+    vegetables directly from trusted farmers. Customer satisfaction is our priority.
+  </p>
+
+  <h2>Our Awesome Team Members</h2>
+  <div class="team">
+    <div class="member">
+      <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
+      <h4>Priya</h4>
+      <p>Manager</p>
+    </div>
+
+    <div class="member">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d">
+      <h4>Rahul</h4>
+      <p>Sales Head</p>
+    </div>
+
+    <div class="member">
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330">
+      <h4>Anita</h4>
+      <p>Support</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div id="products" class="section">
+  <h2>Latest Products</h2>
+  <div class="products">
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2">
+      <h3>Strwaberry</h3>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1615485925600-97237c4fc1ec">
+      <h3>Pomegranute</h3>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1582515073490-39981397c445">
+      <h3>carrot</h3>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1592928302833-3f8f6cdbf0ae">
+      <h3> </h3>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+  <h2>Contact Us</h2>
+  <p style="text-align:center;">
+    Email: vaishnavishinde111980@gmail.com <br>
+    Phone: 9307577865
+  </p>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="section">
+  <h2>Login</h2>
+  <p style="text-align:center;">Login feature coming soon...</p>
+</div><div class="banner-box">
+  <h2>Fresh Grocery Order</h2>
+
+  <form id="orderForm">
+    <input type="text" placeholder="Your Name" required><br><br>
+    <input type="tel" placeholder="Mobile Number" required><br><br>
+    <input type="text" placeholder="Address" required><br><br>
+
+    <button type="submit">Submit</button>
+    
+  </form>
+
+  <p id="successMsg" style="color:green;font-weight:bold;"></p>
+</div>
+
+<script>
+function submitForm(event){
+  event.preventDefault(); // page reload 
+
+  document.getElementById("msg").innerText =
+    "✅ Form Submitted Successfully!";
+}
+</script>
+
+</body>
+
+<div class="footer">
+  © 2025 Grocery Store
+</div>
+
+</body>
+</html>
