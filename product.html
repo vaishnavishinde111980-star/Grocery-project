@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Products | Grocery Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;font-family:Arial;background:#f4f4f4}
+nav{background:#27ae60;color:#fff;padding:15px 30px;display:flex;justify-content:space-between;align-items:center}
+nav a{color:#fff;text-decoration:none;margin-left:15px;font-weight:bold}
+
+h1{text-align:center;margin:20px}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.card{
+  background:#fff;
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+  box-shadow:0 4px 8px rgba(0,0,0,.1);
+}
+.card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:8px;
+}
+.price{color:#27ae60;font-weight:bold}
+button{
+  background:#27ae60;
+  color:#fff;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+}
+button:hover{background:#1e8449}
+
+.cart{
+  background:#fff;
+  margin:20px;
+  padding:15px;
+  border-radius:10px;
+}
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  margin:6px 0;
+}
+footer{text-align:center;padding:15px;background:#27ae60;color:#fff}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h2>Grocery Store</h2>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="product.html">Products</a>
+  </div>
+</nav>
+
+<h1>Fruits & Vegetables</h1>
+
+<div class="products" id="products"></div>
+
+<div class="cart">
+  <h3>🛒 Cart</h3>
+  <div id="cartItems"></div>
+  <h3>Total: ₹<span id="total">0</span></h3>
+</div>
+
+<footer>© Grocery Store</footer>
+
+<script>
+const products = [
+/* Fruits (30) */
+{name:"Apple",price:120,img:"https://source.unsplash.com/300x200/?apple,fruit"},
+{name:"Banana",price:50,img:"https://source.unsplash.com/300x200/?banana,fruit"},
+{name:"Orange",price:80,img:"https://source.unsplash.com/300x200/?orange,fruit"},
+{name:"Mango",price:150,img:"https://source.unsplash.com/300x200/?mango,fruit"},
+{name:"Grapes",price:90,img:"https://source.unsplash.com/300x200/?grapes,fruit"},
+{name:"Pineapple",price:70,img:"https://source.unsplash.com/300x200/?pineapple,fruit"},
+{name:"Papaya",price:60,img:"https://source.unsplash.com/300x200/?papaya,fruit"},
+{name:"Watermelon",price:90,img:"https://source.unsplash.com/300x200/?watermelon,fruit"},
+{name:"Kiwi",price:160,img:"https://source.unsplash.com/300x200/?kiwi,fruit"},
+{name:"Strawberry",price:180,img:"https://source.unsplash.com/300x200/?strawberry,fruit"},
+{name:"Pear",price:110,img:"https://source.unsplash.com/300x200/?pear,fruit"},
+{name:"Plum",price:140,img:"https://source.unsplash.com/300x200/?plum,fruit"},
+{name:"Peach",price:150,img:"https://source.unsplash.com/300x200/?peach,fruit"},
+{name:"Blueberry",price:200,img:"https://source.unsplash.com/300x200/?blueberry,fruit"},
+{name:"Cherry",price:220,img:"https://source.unsplash.com/300x200/?cherry,fruit"},
+
+/* Vegetables (30) */
+{name:"Tomato",price:40,img:"https://source.unsplash.com/300x200/?tomato,vegetable"},
+{name:"Potato",price:30,img:"https://source.unsplash.com/300x200/?potato,vegetable"},
+{name:"Onion",price:35,img:"https://source.unsplash.com/300x200/?onion,vegetable"},
+{name:"Carrot",price:40,img:"https://source.unsplash.com/300x200/?carrot,vegetable"},
+{name:"Cabbage",price:30,img:"https://source.unsplash.com/300x200/?cabbage,vegetable"},
+{name:"Cauliflower",price:35,img:"https://source.unsplash.com/300x200/?cauliflower,vegetable"},
+{name:"Capsicum",price:50,img:"https://source.unsplash.com/300x200/?capsicum,vegetable"},
+{name:"Spinach",price:25,img:"https://source.unsplash.com/300x200/?spinach,vegetable"},
+{name:"Broccoli",price:80,img:"https://source.unsplash.com/300x200/?broccoli,vegetable"},
+{name:"Beetroot",price:45,img:"https://source.unsplash.com/300x200/?beetroot,vegetable"},
+{name:"Green Chilli",price:30,img:"https://source.unsplash.com/300x200/?green chilli"},
+{name:"Garlic",price:70,img:"https://source.unsplash.com/300x200/?garlic"},
+{name:"Ginger",price:60,img:"https://source.unsplash.com/300x200/?ginger"},
+{name:"Lemon",price:40,img:"https://source.unsplash.com/300x200/?lemon"},
+{name:"Corn",price:55,img:"https://source.unsplash.com/300x200/?corn,vegetable"}
+];
+
+let cart = [];
+
+const prodDiv = document.getElementById("products");
+products.forEach((p,i)=>{
+  prodDiv.innerHTML += `
+  <div class="card">
+    <img src="${p.img}">
+    <h3>${p.name}</h3>
+    <p class="price">₹${p.price}</p>
+    <button onclick="addToCart(${i})">Add to Cart</button>
+  </div>`;
+});
+
+function addToCart(i){
+  let item = cart.find(x => x.name === products[i].name);
+  if(item) item.qty++;
+  else cart.push({...products[i], qty:1});
+  renderCart();
+}
+
+function renderCart(){
+  let total=0;
+  document.getElementById("cartItems").innerHTML="";
+  cart.forEach(p=>{
+    total += p.price * p.qty;
+    document.getElementById("cartItems").innerHTML +=
+      `<div class="cart-item">
+        ${p.name} x ${p.qty}
+        <b>₹${p.price*p.qty}</b>
+      </div>`;
+  });
+  document.getElementById("total").innerText = total;
+}
+</script>
+
+</body>
+</html>
